@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_colors/app_colors.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_fonts/app_fonts.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.dart';
+import 'package:neobis_flutter_chapter_7/src/registration/presentation/registration%20screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -13,6 +13,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   bool obscureText = true;
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,13 +60,21 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 24,
                 ),
                 CustomElevatedButton(
+                  title: 'Войти',
                   onPressed: () {},
                 ),
                 const SizedBox(
                   height: 28,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegistrationScreen(),
+                      ),
+                    );
+                  },
                   child: Text(
                     'У меня еще нет аккаунта',
                     style: AppFonts.s16w500.copyWith(
@@ -84,10 +93,12 @@ class _AuthScreenState extends State<AuthScreen> {
 
 class CustomElevatedButton extends StatelessWidget {
   final Function() onPressed;
+  final String title;
 
   const CustomElevatedButton({
     super.key,
     required this.onPressed,
+    required this.title,
   });
 
   @override
@@ -104,9 +115,9 @@ class CustomElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.black28,
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
-          'Войти',
+          title,
           style: AppFonts.s16w500.copyWith(
             color: AppColors.textWhite,
           ),

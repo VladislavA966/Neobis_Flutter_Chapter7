@@ -3,4 +3,5 @@ class Images {
   static const String splashScreenPng = 'assets/images/illustration.png';
   static const String showText = 'assets/images/show_text_icon.png';
   static const String hideText = 'assets/images/hide_text_icon.png';
+  static const String emailSended = 'assets/images/email_sended.png';
 }
