@@ -13,7 +13,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   bool obscureText = true;
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 28,
                 ),
                 CustomTextField(
+                  onSubmitted: (value) {},
                   obscureText: false,
                   hintText: 'Введи туда-сюда логин',
                   onTapIcon: () {},
@@ -48,6 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 14,
                 ),
                 CustomTextField(
+                  onSubmitted: (value) {},
                   showSuffix: true,
                   hintText: 'Пароль(тоже введи)',
                   onTapIcon: () {
@@ -132,6 +134,7 @@ class CustomTextField extends StatelessWidget {
   final bool showSuffix;
   final Function() onTapIcon;
   final bool obscureText;
+  final Function(String) onSubmitted;
 
   const CustomTextField({
     Key? key,
@@ -139,11 +142,13 @@ class CustomTextField extends StatelessWidget {
     this.showSuffix = false,
     required this.onTapIcon,
     required this.obscureText,
+    required this.onSubmitted,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onSubmitted,
       obscureText: obscureText,
       obscuringCharacter: '*',
       decoration: InputDecoration(
