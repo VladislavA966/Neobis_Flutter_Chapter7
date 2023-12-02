@@ -72,24 +72,26 @@ class _EmailConfirmationScreenState extends State<EmailConfirmationScreen> {
       ),
     );
   }
-}
 
-AppBar appBarTheme() {
-  return AppBar(
-    elevation: 0,
-    backgroundColor: AppColors.textWhite,
-    title: Text(
-      'Регистрация',
-      style: AppFonts.s16w500.copyWith(
-        color: AppColors.black28,
+  AppBar appBarTheme() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: AppColors.textWhite,
+      title: Text(
+        'Регистрация',
+        style: AppFonts.s16w500.copyWith(
+          color: AppColors.black28,
+        ),
       ),
-    ),
-    leading: IconButton(
-      icon: const Icon(
-        Icons.arrow_back_ios_new,
-        color: AppColors.black28,
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios_new,
+          color: AppColors.black28,
+        ),
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
-      onPressed: () {},
-    ),
-  );
+    );
+  }
 }

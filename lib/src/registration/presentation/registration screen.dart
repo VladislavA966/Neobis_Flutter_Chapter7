@@ -78,7 +78,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return CustomTextField(
       onSubmitted: (value) {
         passwordController.text = value;
-        BlocProvider.of<RegistrationBloc>(context).add(ValidationEvent(password: value));
+        BlocProvider.of<RegistrationBloc>(context)
+            .add(ValidationEvent(password: value));
       },
       showSuffix: true,
       hintText: 'Придумай пароль',
@@ -100,13 +101,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildValidationItem(state.passwordLength, 'От 8 до 15 символов'),
+                _buildValidationItem(
+                    state.passwordLength, 'От 8 до 15 символов'),
                 const SizedBox(height: 10),
-                _buildValidationItem(state.passwordUpperCase, 'Строчные и прописные буквы'),
+                _buildValidationItem(
+                    state.passwordUpperCase, 'Строчные и прописные буквы'),
                 const SizedBox(height: 10),
                 _buildValidationItem(state.number, 'Минимум одна цифра'),
                 const SizedBox(height: 10),
-                _buildValidationItem(state.symbol, 'Минимум один спецсимвол (!, ", #, \$...)'),
+                _buildValidationItem(
+                    state.symbol, 'Минимум один спецсимвол (!, ", #, \$...)'),
               ],
             );
           }
@@ -145,10 +149,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildNextButton(BuildContext context) {
     return CustomElevatedButton(
-      onPressed: () {
+      onPressed: () { 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const EmailConfirmationScreen()),
+          MaterialPageRoute(
+              builder: (context) => const EmailConfirmationScreen()),
         );
       },
       title: 'Далее',
@@ -168,7 +173,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           Icons.arrow_back_ios_new,
           color: AppColors.black28,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
