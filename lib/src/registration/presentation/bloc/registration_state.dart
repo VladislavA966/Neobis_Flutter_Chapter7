@@ -19,3 +19,13 @@ class ValidationState extends RegistrationState {
       required this.symbol,
       required this.isValid});
 }
+
+class SendRegistrationDataLoading extends RegistrationState {}
+
+class SendRegistrationDataLoaded extends RegistrationState {}
+
+class SendRegistrationDataError extends RegistrationState {
+  final String errorText;
+
+  SendRegistrationDataError({required this.errorText});
+}

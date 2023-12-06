@@ -41,6 +41,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 28,
                 ),
                 CustomTextField(
+                  controller: TextEditingController(),
                   onSubmitted: (value) {},
                   obscureText: false,
                   hintText: 'Введи туда-сюда логин',
@@ -50,6 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   height: 14,
                 ),
                 CustomTextField(
+                  controller: TextEditingController(),
                   onSubmitted: (value) {},
                   showSuffix: true,
                   hintText: 'Пароль(тоже введи)',
@@ -156,6 +158,7 @@ class CustomElevatedButton extends StatelessWidget {
 }
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
   final String hintText;
   final bool showSuffix;
   final Function() onTapIcon;
@@ -169,11 +172,13 @@ class CustomTextField extends StatelessWidget {
     required this.onTapIcon,
     required this.obscureText,
     required this.onSubmitted,
+    required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onChanged: onSubmitted,
       obscureText: obscureText,
       obscuringCharacter: '*',

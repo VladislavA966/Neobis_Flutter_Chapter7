@@ -1,24 +1,46 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:neobis_flutter_chapter_7/src/registration/domain/usecases/registration_data_usecase.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/domain/validation/validation.dart';
 
 part 'registration_event.dart';
 part 'registration_state.dart';
 
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
-  final UserValidation validation;
+  final RegistrationUseCase useCase;
 
-  RegistrationBloc({required this.validation}) : super(RegistrationInitial()) {
+  RegistrationBloc({required this.useCase}) : super(RegistrationInitial()) {
     on<ValidationEvent>(_mapValidationToState);
+    on<SendRegistrationData>(
+      (event, emit) async {
+        emit(
+          SendRegistrationDataLoading(),
+        );
+        try {
+          await useCase.repository
+              .sendRegistrationData(event.email, event.login, event.passwrod);
+          emit(
+            SendRegistrationDataLoaded(),
+          );
+        } catch (e) {
+          emit(
+            SendRegistrationDataError(
+              errorText: e.toString(),
+            ),
+          );
+        }
+      },
+    );
   }
 
   void _mapValidationToState(
       ValidationEvent event, Emitter<RegistrationState> emit) {
-    final passwordLength = validation.isValidLength(event.password);
-    final hasLetters = validation.hasAlphabetic(event.password);
-    final hasDigit = validation.hasDigit(event.password);
-    final hasSymbol = validation.hasSpecialChar(event.password);
-    final isValid = validation.isValidPassword(event.password);
+    final passwordLength = useCase.isValidLength(event.password);
+    final hasLetters = useCase.hasAlphabetic(event.password);
+    final hasDigit = useCase.hasDigit(event.password);
+    final hasSymbol = useCase.hasSpecialChar(event.password);
+    final isValid = useCase.isValidPassword(event.password);
 
     emit(
       ValidationState(

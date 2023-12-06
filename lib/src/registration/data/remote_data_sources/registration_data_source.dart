@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:neobis_flutter_chapter_7/src/registration/data/models/registration_model.dart';
 
 abstract class RegistrationDataSource {
   Future<void> sendRegistrationData(
@@ -17,7 +16,7 @@ class RegisterDataSourceImpl implements RegistrationDataSource {
         .post('https://authdrf-production.up.railway.app/register/', data: {
       "email": email,
       "password": password,
-      "usernmae": login,
+      "username": login,
     });
   }
 }

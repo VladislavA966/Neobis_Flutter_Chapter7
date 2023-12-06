@@ -1,4 +1,4 @@
-class UserValidation {
+mixin UserValidation {
   bool isValidLength(String password) {
     return password.length >= 8 && password.length <= 15;
   }

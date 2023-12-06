@@ -14,7 +14,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final TextEditingController passwordController = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final loginController = TextEditingController();
   bool obscureText = true;
   bool obscureText2 = true;
   @override
@@ -57,6 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildEmailTextField() {
     return CustomTextField(
+      controller: emailController,
       onSubmitted: (_) {},
       obscureText: false,
       hintText: 'Введи адрес почты',
@@ -66,6 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildUsernameTextField() {
     return CustomTextField(
+      controller: loginController,
       onSubmitted: (_) {},
       obscureText: false,
       hintText: 'Придумай логин',
@@ -75,6 +79,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildPasswordTextField() {
     return CustomTextField(
+      controller: passwordController,
       onSubmitted: (value) {
         passwordController.text = value;
         BlocProvider.of<RegistrationBloc>(context)
@@ -134,6 +139,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildCreatePasswordTextField() {
     return CustomTextField(
+      controller: TextEditingController(),
       onSubmitted: (_) {},
       showSuffix: true,
       hintText: 'Создай пароль',
@@ -149,6 +155,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget _buildNextButton(BuildContext context) {
     return CustomElevatedButton(
       onPressed: () {
+        BlocProvider.of<RegistrationBloc>(context).add(
+          SendRegistrationData(
+            email: emailController.text,
+            login: loginController.text,
+            passwrod: passwordController.text,
+          ),
+        );
         Navigator.push(
           context,
           MaterialPageRoute(
