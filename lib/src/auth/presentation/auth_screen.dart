@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_colors/app_colors.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_fonts/app_fonts.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.dart';
+import 'package:neobis_flutter_chapter_7/src/authorized_screen/presentation/authorized_screen.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/presentation/registration%20screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -63,12 +64,19 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 CustomElevatedButton(
                   title: 'Войти',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AuthorizedScreen(),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 28,
                 ),
-                TextButton(
+                CommonTextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -77,16 +85,34 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                     );
                   },
-                  child: Text(
-                    'У меня еще нет аккаунта',
-                    style: AppFonts.s16w500.copyWith(
-                      color: AppColors.black28,
-                    ),
-                  ),
+                  title: 'У меня еще нет аккаунта',
                 ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CommonTextButton extends StatelessWidget {
+  final Function() onPressed;
+  final String title;
+  const CommonTextButton({
+    super.key,
+    required this.onPressed,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        title,
+        style: AppFonts.s16w500.copyWith(
+          color: AppColors.black28,
         ),
       ),
     );

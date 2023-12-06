@@ -17,7 +17,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController passwordController = TextEditingController();
   bool obscureText = true;
   bool obscureText2 = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +148,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   Widget _buildNextButton(BuildContext context) {
     return CustomElevatedButton(
-      onPressed: () { 
+      onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(
