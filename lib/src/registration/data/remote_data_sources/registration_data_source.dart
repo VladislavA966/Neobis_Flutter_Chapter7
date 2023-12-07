@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:neobis_flutter_chapter_7/core/services/dio_settings.dart';
 
 abstract class RegistrationDataSource {
   Future<void> sendRegistrationData(
