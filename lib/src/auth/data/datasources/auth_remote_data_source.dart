@@ -10,7 +10,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required this.dio});
   @override
   Future<void> sendAuthData(String email, String password) async {
-    await dio.post('path', data: {
+    await dio.post('/login', data: {
       "email": email,
       "password": password,
     });

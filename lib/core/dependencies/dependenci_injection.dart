@@ -10,37 +10,24 @@ import 'package:neobis_flutter_chapter_7/src/registration/domain/usecases/regist
 final getIt = GetIt.instance;
 
 void setupDependencies() {
-  getIt.registerSingleton<DioSettings>(
-    DioSettings(),
-  );
+  getIt.registerSingleton<DioSettings>(DioSettings());
   getIt.registerSingleton<RegisterDataSourceImpl>(
-    RegisterDataSourceImpl(
-      dio: getIt<DioSettings>().dio,
-    ),
+    RegisterDataSourceImpl(dioSettings: getIt<DioSettings>()),
   );
   getIt.registerSingleton<RegistrationRepositoryImpl>(
     RegistrationRepositoryImpl(
-      remoteDataSource: getIt<RegisterDataSourceImpl>(),
-    ),
+        remoteDataSource: getIt<RegisterDataSourceImpl>()),
   );
   getIt.registerSingleton<RegistrationUseCase>(
-    RegistrationUseCase(
-      repository: getIt<RegistrationRepositoryImpl>(),
-    ),
+    RegistrationUseCase(repository: getIt<RegistrationRepositoryImpl>()),
   );
-  getIt.registerSingleton<AuthRemoteDataSourceImpl>(
-    AuthRemoteDataSourceImpl(
-      dio: getIt<DioSettings>().dio,
-    ),
-  );
-  getIt.registerSingleton<AuthRepositoryImpl>(
-    AuthRepositoryImpl(
-      authRemoteDataSource: getIt<AuthRemoteDataSourceImpl>(),
-    ),
-  );
-  getIt.registerSingleton<AuthUseCase>(
-    AuthUseCase(
-      repository: getIt<AuthRepositoryImpl>(),
-    ),
-  );
+  getIt.registerSingleton<AuthRemoteDataSourceImpl>(AuthRemoteDataSourceImpl(
+    dio: getIt<DioSettings>().dio,
+  ));
+  getIt.registerSingleton<AuthRepositoryImpl>(AuthRepositoryImpl(
+    authRemoteDataSource: getIt<AuthRemoteDataSourceImpl>(),
+  ));
+  getIt.registerSingleton<AuthUseCase>(AuthUseCase(
+    repository: getIt<AuthRepositoryImpl>(),
+  ));
 }

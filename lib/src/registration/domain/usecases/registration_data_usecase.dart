@@ -1,8 +1,7 @@
-import 'package:neobis_flutter_chapter_7/src/registration/domain/entities/registration_user_data.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/domain/repositories/registration_repository.dart';
 import 'package:neobis_flutter_chapter_7/core/validation/validation.dart';
 
-class RegistrationUseCase with UserValidation {
+class RegistrationUseCase with PasswordValidation {
   final RegistrationRepository repository;
 
   RegistrationUseCase({required this.repository});

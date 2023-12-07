@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:neobis_flutter_chapter_7/core/common_widgets/common_elevated_button.dart';
+import 'package:neobis_flutter_chapter_7/core/common_widgets/common_text_button.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_colors/app_colors.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_fonts/app_fonts.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.dart';
