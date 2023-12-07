@@ -4,7 +4,8 @@ import 'package:neobis_flutter_chapter_7/core/resourses/app_fonts/app_fonts.dart
 import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.dart';
 
 class EmailConfirmationScreen extends StatefulWidget {
-  const EmailConfirmationScreen({super.key});
+  final String email;
+  const EmailConfirmationScreen({super.key, required this.email});
 
   @override
   State<EmailConfirmationScreen> createState() =>
@@ -28,7 +29,7 @@ class _EmailConfirmationScreenState extends State<EmailConfirmationScreen> {
                 height: 20,
               ),
               Text(
-                'Выслали письмо со ссылкой\nдля завершения регистрации\nна example@gmail.com',
+                'Выслали письмо со ссылкой\nдля завершения регистрации\nна ${widget.email}',
                 textAlign: TextAlign.center,
                 style: AppFonts.s20w400.copyWith(color: AppColors.black21),
               ),

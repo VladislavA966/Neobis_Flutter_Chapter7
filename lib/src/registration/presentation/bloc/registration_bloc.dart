@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/domain/usecases/registration_data_usecase.dart';
-import 'package:neobis_flutter_chapter_7/src/registration/domain/validation/validation.dart';
+import 'package:neobis_flutter_chapter_7/core/validation/validation.dart';
 
 part 'registration_event.dart';
 part 'registration_state.dart';

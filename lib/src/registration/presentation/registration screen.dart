@@ -153,22 +153,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   Widget _buildNextButton(BuildContext context) {
-    return CustomElevatedButton(
-      onPressed: () {
-        BlocProvider.of<RegistrationBloc>(context).add(
-          SendRegistrationData(
-            email: emailController.text,
-            login: loginController.text,
-            passwrod: passwordController.text,
-          ),
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const EmailConfirmationScreen()),
-        );
+    return BlocListener<RegistrationBloc, RegistrationState>(
+      listener: (context, state) {
+        if (state is SendRegistrationDataLoaded) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EmailConfirmationScreen(
+                email: emailController.text,
+              ),
+            ),
+          );
+        }
       },
-      title: 'Далее',
+      child: CustomElevatedButton(
+        onPressed: () {
+          BlocProvider.of<RegistrationBloc>(context).add(
+            SendRegistrationData(
+              email: emailController.text,
+              login: loginController.text,
+              passwrod: passwordController.text,
+            ),
+          );
+        },
+        title: 'Далее',
+      ),
     );
   }
 
