@@ -3,7 +3,7 @@ import 'package:neobis_flutter_chapter_7/core/resourses/app_colors/app_colors.da
 import 'package:neobis_flutter_chapter_7/core/resourses/app_fonts/app_fonts.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  final Function() onPressed;
+  final Function()? onPressed;
   final String title;
 
   const CustomElevatedButton({

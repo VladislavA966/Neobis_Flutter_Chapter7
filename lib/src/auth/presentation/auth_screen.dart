@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neobis_flutter_chapter_7/core/common_widgets/common_elevated_button.dart';
@@ -10,7 +9,6 @@ import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.da
 import 'package:neobis_flutter_chapter_7/src/auth/presentation/bloc/auth_bloc_bloc.dart';
 import 'package:neobis_flutter_chapter_7/src/authorized_screen/presentation/authorized_screen.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/presentation/registration%20screen.dart';
-
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -75,7 +73,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget _buildEmailTextField() {
     return CustomTextField(
       controller: emailController,
-      onSubmitted: (value) {},
+      onChanged: (value) {},
       obscureText: false,
       hintText: 'Введи туда-сюда логин',
       onTapIcon: () {},
@@ -85,7 +83,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget _buildPasswordTextField() {
     return CustomTextField(
       controller: passwordController,
-      onSubmitted: (value) {},
+      onChanged: (value) {},
       showSuffix: true,
       hintText: 'Пароль(тоже введи)',
       onTapIcon: () {

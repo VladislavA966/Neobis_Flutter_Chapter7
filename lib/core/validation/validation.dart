@@ -15,6 +15,14 @@ mixin PasswordValidation {
     return password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   }
 
+  bool emailValidation(String email) {
+    return email.contains('@');
+  }
+
+  bool passwordsValid(String password, String passwordCheck) {
+    return password == passwordCheck;
+  }
+
   bool isValidPassword(String password) {
     return isValidLength(password) &&
         hasAlphabetic(password) &&

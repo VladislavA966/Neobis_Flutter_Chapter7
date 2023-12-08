@@ -7,7 +7,8 @@ class CustomTextField extends StatelessWidget {
   final bool showSuffix;
   final Function() onTapIcon;
   final bool obscureText;
-  final Function(String) onSubmitted;
+  final Function(String) onChanged;
+  final String? errorText;
 
   const CustomTextField({
     Key? key,
@@ -15,18 +16,20 @@ class CustomTextField extends StatelessWidget {
     this.showSuffix = false,
     required this.onTapIcon,
     required this.obscureText,
-    required this.onSubmitted,
+    required this.onChanged,
     required this.controller,
+    this.errorText,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      onChanged: onSubmitted,
+      onChanged: onChanged,
       obscureText: obscureText,
       obscuringCharacter: '*',
       decoration: InputDecoration(
+        errorText: errorText,
         hintText: hintText,
         suffixIcon: showSuffix
             ? IconButton(

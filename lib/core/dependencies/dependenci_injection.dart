@@ -3,6 +3,9 @@ import 'package:neobis_flutter_chapter_7/core/services/dio_settings.dart';
 import 'package:neobis_flutter_chapter_7/src/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:neobis_flutter_chapter_7/src/auth/data/repositories/auth_repository_impl.dart';
 import 'package:neobis_flutter_chapter_7/src/auth/domain/usecases/auth_use_case.dart';
+import 'package:neobis_flutter_chapter_7/src/email_confirm/data/data_source/remote_data_source.dart';
+import 'package:neobis_flutter_chapter_7/src/email_confirm/data/repositories/confirm_repository_impl.dart';
+import 'package:neobis_flutter_chapter_7/src/email_confirm/domain/usecase/confirm_use_case.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/data/remote_data_sources/registration_data_source.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/data/repositories/get_registration_repository_impl.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/domain/usecases/registration_data_usecase.dart';
@@ -30,4 +33,17 @@ void setupDependencies() {
   getIt.registerSingleton<AuthUseCase>(AuthUseCase(
     repository: getIt<AuthRepositoryImpl>(),
   ));
+  getIt.registerSingleton<ConfirmDataSocurceImpl>(
+    ConfirmDataSocurceImpl(
+      dio: getIt<DioSettings>().dio,
+    ),
+  );
+  getIt.registerSingleton<ConfirmRepoImpl>(ConfirmRepoImpl(
+    dataSocurce: getIt<ConfirmDataSocurceImpl>(),
+  ));
+  getIt.registerSingleton<ConfirmUseCase>(
+    ConfirmUseCase(
+      repository: getIt<ConfirmRepoImpl>(),
+    ),
+  );
 }
