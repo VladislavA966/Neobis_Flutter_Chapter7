@@ -20,8 +20,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       SendRegistrationDataLoading(),
     );
     try {
-      await useCase.repository
-          .sendRegistrationData(event.email, event.login, event.passwrod);
+      await useCase.call(event.email, event.login, event.passwrod);
       emit(
         SendRegistrationDataLoaded(),
       );

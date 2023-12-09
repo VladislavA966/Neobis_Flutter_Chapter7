@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:neobis_flutter_chapter_7/core/resourses/app_images/app_images.dart';
 
 class CustomTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String hintText;
   final bool showSuffix;
-  final Function() onTapIcon;
+  final Function()? onTapIcon;
   final bool obscureText;
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
   final String? errorText;
 
   const CustomTextField({
     Key? key,
     required this.hintText,
     this.showSuffix = false,
-    required this.onTapIcon,
+    this.onTapIcon,
     required this.obscureText,
-    required this.onChanged,
-    required this.controller,
+    this.onChanged,
+    this.controller,
     this.errorText,
   }) : super(key: key);
 

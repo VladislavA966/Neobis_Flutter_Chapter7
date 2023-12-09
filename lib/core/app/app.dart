@@ -4,6 +4,8 @@ import 'package:neobis_flutter_chapter_7/core/dependencies/dependenci_injection.
 import 'package:neobis_flutter_chapter_7/core/resourses/app_colors/app_colors.dart';
 import 'package:neobis_flutter_chapter_7/src/auth/domain/usecases/auth_use_case.dart';
 import 'package:neobis_flutter_chapter_7/src/auth/presentation/bloc/auth_bloc_bloc.dart';
+import 'package:neobis_flutter_chapter_7/src/email_confirm/domain/usecase/confirm_use_case.dart';
+import 'package:neobis_flutter_chapter_7/src/email_confirm/presentation/bloc/confirm_bloc.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/domain/usecases/registration_data_usecase.dart';
 import 'package:neobis_flutter_chapter_7/src/registration/presentation/bloc/registration_bloc.dart';
 import 'package:neobis_flutter_chapter_7/src/splashscreen/presentation/splash_screen.dart';
@@ -23,6 +25,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AuthBloc(
             useCase: getIt<AuthUseCase>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => ConfirmBloc(
+            useCase: getIt<ConfirmUseCase>(),
           ),
         ),
       ],

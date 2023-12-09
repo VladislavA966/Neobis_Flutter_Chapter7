@@ -22,11 +22,11 @@ class _AuthorizedScreenState extends State<AuthorizedScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 118,
               ),
               Text(
-                'C возвращением!',
+                'Добро пожаловать!',
                 style: AppFonts.s24w500.copyWith(color: AppColors.black21),
               ),
               Text(

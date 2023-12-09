@@ -20,19 +20,20 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  String? errorTextEmail;
+  String? errorTextPassword;
   bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 16,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: _buildContent(),
             ),
-            child: _buildContent(),
           ),
         ),
       ),
@@ -64,31 +65,28 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget _buildWelcomeText() {
     return Text(
       'Велком бэк!',
-      style: AppFonts.s24w500.copyWith(
-        color: AppColors.black21,
-      ),
+      style: AppFonts.s24w500.copyWith(color: AppColors.black21),
     );
   }
 
   Widget _buildEmailTextField() {
     return CustomTextField(
       controller: emailController,
-      onChanged: (value) {},
       obscureText: false,
-      hintText: 'Введи туда-сюда логин',
-      onTapIcon: () {},
+      hintText: 'Введи туда-сюда почту',
+    
     );
   }
 
   Widget _buildPasswordTextField() {
     return CustomTextField(
       controller: passwordController,
-      onChanged: (value) {},
       showSuffix: true,
       hintText: 'Пароль(тоже введи)',
       onTapIcon: () {
-        obscureText = !obscureText;
-        setState(() {});
+        setState(() {
+          obscureText = !obscureText;
+        });
       },
       obscureText: obscureText,
     );
@@ -100,17 +98,11 @@ class _AuthScreenState extends State<AuthScreen> {
         if (state is AuthBlocLoaded) {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const AuthorizedScreen(),
-            ),
+            MaterialPageRoute(builder: (context) => const AuthorizedScreen()),
           );
         } else if (state is AuthBlocError) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                state.errorText,
-              ),
-            ),
+            SnackBar(content: Text(state.errorText)),
           );
         }
       },
@@ -133,9 +125,7 @@ class _AuthScreenState extends State<AuthScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const RegistrationScreen(),
-          ),
+          MaterialPageRoute(builder: (context) => const RegistrationScreen()),
         );
       },
       title: 'У меня еще нет аккаунта',

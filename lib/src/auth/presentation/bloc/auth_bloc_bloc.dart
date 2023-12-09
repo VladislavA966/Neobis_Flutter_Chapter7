@@ -16,7 +16,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       AuthBlocLoading(),
     );
     try {
-      await useCase.repository.logIn(event.email, event.password);
+      await useCase.call(event.email, event.password);
       emit(
         AuthBlocLoaded(),
       );

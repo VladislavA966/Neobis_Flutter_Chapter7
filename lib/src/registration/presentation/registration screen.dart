@@ -31,24 +31,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       appBar: appBarTheme(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 16),
-              _buildHeaderText(),
-              const SizedBox(height: 40),
-              _buildEmailTextField(),
-              const SizedBox(height: 14),
-              _buildUsernameTextField(),
-              const SizedBox(height: 14),
-              _buildPasswordTextField(),
-              const SizedBox(height: 10),
-              _buildValidationText(),
-              const SizedBox(height: 14),
-              _buildCreatePasswordTextField(),
-              const SizedBox(height: 24),
-              _buildNextButton(context, isValid),
-            ],
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(height: 16),
+                _buildHeaderText(),
+                const SizedBox(height: 40),
+                _buildEmailTextField(),
+                const SizedBox(height: 14),
+                _buildUsernameTextField(),
+                const SizedBox(height: 14),
+                _buildPasswordTextField(),
+                const SizedBox(height: 10),
+                _buildValidationText(),
+                const SizedBox(height: 14),
+                _buildCreatePasswordTextField(),
+                const SizedBox(height: 24),
+                _buildNextButton(context, isValid),
+              ],
+            ),
           ),
         ),
       ),
@@ -197,8 +199,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
           );
         } else if (state is SendRegistrationDataError) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Пользователь с такой почтой уже существует')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Пользователь с такой почтой уже существует'),
+            ),
+          );
         }
       },
       child: CustomElevatedButton(

@@ -33,13 +33,13 @@ void setupDependencies() {
   getIt.registerSingleton<AuthUseCase>(AuthUseCase(
     repository: getIt<AuthRepositoryImpl>(),
   ));
-  getIt.registerSingleton<ConfirmDataSocurceImpl>(
-    ConfirmDataSocurceImpl(
+  getIt.registerSingleton<ConfirmDataSourceImpl>(
+    ConfirmDataSourceImpl(
       dio: getIt<DioSettings>().dio,
     ),
   );
   getIt.registerSingleton<ConfirmRepoImpl>(ConfirmRepoImpl(
-    dataSocurce: getIt<ConfirmDataSocurceImpl>(),
+    dataSocurce: getIt<ConfirmDataSourceImpl>(),
   ));
   getIt.registerSingleton<ConfirmUseCase>(
     ConfirmUseCase(

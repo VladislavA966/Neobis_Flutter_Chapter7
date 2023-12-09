@@ -1,18 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:neobis_flutter_chapter_7/src/email_confirm/data/models/token_model.dart';
 
-abstract class ConfirmDataSocurce {
+abstract class ConfirmDataSource {
   Future<TokenModel> sendCode(String code);
 }
 
-class ConfirmDataSocurceImpl implements ConfirmDataSocurce {
+class ConfirmDataSourceImpl implements ConfirmDataSource {
   final Dio dio;
 
-  ConfirmDataSocurceImpl({required this.dio});
+  ConfirmDataSourceImpl({required this.dio});
+
   @override
   Future<TokenModel> sendCode(String code) async {
-    final responce =
-        await dio.post('/confirm-email/$code', data: {'code': code});
-    return TokenModel.fromJson(responce.data);
+    final response = await dio.post('/confirm-email/$code/', data: {'code': code});
+
+    if (response.statusCode == 200) {
+      return TokenModel.fromJson(response.data);
+    } else {
+      throw Exception('Ошибка. Status code: ${response.statusCode}');
+    }
   }
 }
